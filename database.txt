@@ -1,0 +1,88 @@
+// Skripte za bazu
+CREATE TABLE `course` (
+  `id` varchar(45) NOT NULL,
+  `name` varchar(300) DEFAULT NULL,
+  `introductionDate` datetime DEFAULT NULL,
+  `description` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+
+CREATE TABLE `software` (
+  `id` VARCHAR(30) NOT NULL,
+  `name` VARCHAR(300) NULL,
+  `os` INT NULL,
+  `manufacturer` VARCHAR(300) NULL,
+  `website` VARCHAR(300) NULL,
+  `publicationYear` VARCHAR(30) NULL,
+  `price` DOUBLE NULL,
+  `description` VARCHAR(300) NULL,
+  PRIMARY KEY (`id`));
+  
+  CREATE TABLE `classroom` (
+  `id` varchar(30) NOT NULL,
+  `description` varchar(300) DEFAULT NULL,
+  `projector` tinyint(1) DEFAULT NULL,
+  `table` tinyint(1) DEFAULT NULL,
+  `smartTable` tinyint(1) DEFAULT NULL,
+  `os` int(11) DEFAULT NULL,
+  `numSeats` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+
+  CREATE TABLE `classsoft` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `room` varchar(45) NOT NULL,
+  `soft` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `class_idx` (`room`),
+  KEY `soft_idx` (`soft`),
+  CONSTRAINT `class` FOREIGN KEY (`room`) REFERENCES `classroom` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `soft` FOREIGN KEY (`soft`) REFERENCES `software` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+)
+
+CREATE TABLE `subject` (
+  `id` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(300) NULL,
+  `course_id` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(345) NULL,
+  `groupSize` INT NULL,
+  `lengthTerm` INT NULL,
+  `numTerm` INT NULL,
+  `projector` BOOLEAN NULL,
+  `tab` BOOLEAN NULL,
+  `smartTable` BOOLEAN NULL,
+  `os` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `course_fk_idx` (`course_id` ASC),
+  CONSTRAINT `course_fk`
+    FOREIGN KEY (`course_id`)
+    REFERENCES `course` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `subsoft` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `sub` VARCHAR(45) NOT NULL,
+  `soft` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `sub_fk_idx` (`sub` ASC),
+  INDEX `soft_fk_idx` (`soft` ASC),
+  CONSTRAINT `sub_fk`
+    FOREIGN KEY (`sub`)
+    REFERENCES `subject` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `soft_fk`
+    FOREIGN KEY (`soft`)
+    REFERENCES `software` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `appointment` (
+  `id` INT NOT NULL,
+  `sub_id` VARCHAR(45) NOT NULL,
+  `room_id` VARCHAR(45) NOT NULL,
+  `start` DATETIME NULL,
+  `end` DATETIME NULL,
+  `scheduler` VARCHAR(300) NULL,
+  PRIMARY KEY (`id`));

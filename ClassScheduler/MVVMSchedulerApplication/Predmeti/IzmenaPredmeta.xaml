@@ -1,0 +1,115 @@
+﻿<Window x:Class="MVVMSchedulerApplication.Predmeti.IzmenaPredmeta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:local="clr-namespace:MVVMSchedulerApplication.Predmeti"
+        xmlns:l="clr-namespace:MVVMSchedulerApplication"
+        mc:Ignorable="d"
+        Icon="../util/edit1.png"
+        Title="EDIT SUBJECT" Height="800" Width="450" l:HelpProvider.HelpKey="index">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    <UserControl>
+        <Grid>
+            <dxlc:LayoutControl Orientation="Vertical">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup x:Name="layoutGroup" Orientation="Vertical" VerticalAlignment="Top" >
+                        <dxlc:LayoutItem IsRequired="True" Name="id_edit" LabelPosition="Top" FontSize="17">
+                            <!--<dxe:TextEdit Name="id_edit" MinWidth="200" IsReadOnly="True"/>-->
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Name:" LabelPosition="Top" FontSize="17">
+                            <TextBox Name="name_edit" MinWidth="200" FontSize="17" l:HelpProvider.HelpKey="name"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Course:" LabelPosition="Top" FontSize="17">
+                            <ComboBox Name="course_edit" ItemsSource="{Binding cbItemsCours}" FontSize="17">
+                                <ComboBox.ToolTip>
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        You can choose the course in which the subject is being performed.
+                                    </TextBlock>
+                                </ComboBox.ToolTip>
+                            </ComboBox>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Description:" LabelPosition="Top" FontSize="17">
+                            <TextBox Name="des_edit" MinWidth="200" FontSize="17" l:HelpProvider.HelpKey="description"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Projector:" LabelPosition="Top" FontSize="17">
+                            <ComboBox Name="projector_edit" FontSize="17">
+                                <ComboBox.ToolTip>
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        You need to select whether a projector is needed for the subject.
+                                    </TextBlock>
+                                </ComboBox.ToolTip>
+                                <ComboBoxItem>True</ComboBoxItem>
+                                <ComboBoxItem>False</ComboBoxItem>
+                            </ComboBox>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Table:" LabelPosition="Top" FontSize="17">
+                            <ComboBox Name="table_edit" FontSize="17">
+                                <ComboBox.ToolTip>
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        You need to select whether a table is needed for the subject.
+                                    </TextBlock>
+                                </ComboBox.ToolTip>
+                                <ComboBoxItem>True</ComboBoxItem>
+                                <ComboBoxItem>False</ComboBoxItem>
+                            </ComboBox>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True"  FontSize="17" Label="Smart table:" LabelPosition="Top">
+                            <ComboBox Name="st_edit" FontSize="17">
+                                <ComboBox.ToolTip>
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        You need to select whether a smart table is needed for the subject.
+                                    </TextBlock>
+                                </ComboBox.ToolTip>
+                                <ComboBoxItem>True</ComboBoxItem>
+                                <ComboBoxItem>False</ComboBoxItem>
+                            </ComboBox>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Group size:" FontSize="17" LabelPosition="Top">
+                            <TextBox Name="size_edit" MinWidth="200" FontSize="17" l:HelpProvider.HelpKey="groupSize"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Length of term:" FontSize="17" LabelPosition="Top">
+                            <TextBox Name="len_edit" MinWidth="200" FontSize="17" l:HelpProvider.HelpKey="termLength"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Number of terms:" FontSize="17" LabelPosition="Top">
+                            <TextBox Name="num_edit" MinWidth="200" l:HelpProvider.HelpKey="numTerm"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Operation system:" FontSize="17" LabelPosition="Top">
+                            <ComboBox Name="os_edit" SelectionChanged="os_edit_SelectionChanged" FontSize="17">
+                                <ComboBox.ToolTip>
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        You need to select whether a operation system is needed for the subject.
+                                    </TextBlock>
+                                </ComboBox.ToolTip>
+                                <ComboBoxItem>Windows</ComboBoxItem>
+                                <ComboBoxItem>Linux</ComboBoxItem>
+                                <ComboBoxItem>Cross platform</ComboBoxItem>
+                                <ComboBoxItem>Any</ComboBoxItem>
+                                <ComboBoxItem>Both</ComboBoxItem>
+                            </ComboBox>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Software:" LabelPosition="Top" FontSize="17">
+                            <dxe:ComboBoxEdit Name="soft_edit" ItemsSource="{Binding cbItemsSoft}" FontSize="17">
+                                <dxe:ComboBoxEdit.ToolTip>
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        You need to select whether a software is needed for the subject.
+                                    </TextBlock>
+                                </dxe:ComboBoxEdit.ToolTip>
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedComboBoxStyleSettings/>
+                                </dxe:ComboBoxEdit.StyleSettings>
+
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+                <Button Content="Edit" Click="Button_Click"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="60" Height="30" FontSize="17"/>
+
+            </dxlc:LayoutControl>
+        </Grid>
+    </UserControl>
+</Window>

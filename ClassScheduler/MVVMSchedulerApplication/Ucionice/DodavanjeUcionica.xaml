@@ -1,0 +1,100 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMSchedulerApplication.Ucionice"
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="MVVMSchedulerApplication.Ucionice.DodavanjeUcionica"
+        mc:Ignorable="d"
+        xmlns:l="clr-namespace:MVVMSchedulerApplication"
+        Icon="../util/logoadd.png"
+    l:HelpProvider.HelpKey="index"
+        Title="ADD CLASSROOM" FontSize="17" Height="600" Width="400">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    <UserControl>
+        <Grid>
+            <dxlc:LayoutControl Orientation="Vertical">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup x:Name="layoutGroup" Orientation="Vertical" VerticalAlignment="Top">
+                        <dxlc:LayoutItem IsRequired="True" Label="ID:" LabelPosition="Top">
+                            <TextBox Name="id_edit" MinWidth="200" l:HelpProvider.HelpKey="id"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Description:" LabelPosition="Top">
+                            <TextBox Name="des_edit" MinWidth="200" l:HelpProvider.HelpKey="description"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Projector:" LabelPosition="Top">
+                            <ComboBox Name="projector_edit">
+                                <ComboBox.ToolTip>
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                      You can choose whether the school has a projector.
+                                    </TextBlock>
+                                </ComboBox.ToolTip>
+                                <ComboBoxItem>True</ComboBoxItem>
+                                <ComboBoxItem>False</ComboBoxItem>
+                            </ComboBox>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Table:" LabelPosition="Top">
+                            <ComboBox Name="table_edit">
+                                <ComboBox.ToolTip>
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                        You can choose whether the school has a board.
+                                    </TextBlock>
+                                </ComboBox.ToolTip>
+                                <ComboBoxItem>True</ComboBoxItem>
+                                <ComboBoxItem>False</ComboBoxItem>
+                            </ComboBox>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Smart table:" LabelPosition="Top">
+                            <ComboBox Name="st_edit">
+                                <ComboBox.ToolTip>
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                    You can choose whether the school has a smart board.
+                                    </TextBlock>
+                                </ComboBox.ToolTip>
+                                <ComboBoxItem>True</ComboBoxItem>
+                                <ComboBoxItem>False</ComboBoxItem>
+                            </ComboBox>
+                        </dxlc:LayoutItem>
+                        
+                        <dxlc:LayoutItem IsRequired="True" Label="Operation system :" LabelPosition="Top">
+                            <ComboBox Name="os_edit" SelectionChanged="os_edit_SelectionChanged" >
+                                <ComboBox.ToolTip>
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                     You can select operating system which installed in classroom.
+                                    </TextBlock>
+                                </ComboBox.ToolTip>
+                                <ComboBoxItem >Windows</ComboBoxItem>
+                                <ComboBoxItem>Linux</ComboBoxItem>
+                                <ComboBoxItem>Cross platform</ComboBoxItem>
+                                <ComboBoxItem>Any</ComboBoxItem>
+                                <ComboBoxItem>Both</ComboBoxItem>
+                            </ComboBox>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Number of seats:" LabelPosition="Top">
+                            <TextBox Name="ns_edit" MinWidth="200" l:HelpProvider.HelpKey="numSeats"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem IsRequired="True" Label="Software:" LabelPosition="Top">
+                            <dxe:ComboBoxEdit Name="soft_edit" ItemsSource="{Binding cbItems}">
+                                <dxe:ComboBoxEdit.ToolTip>
+                                    <TextBlock Margin="5" TextWrapping="Wrap" MaxWidth="100">
+                                     You can select software which installed in classroom.
+                                    </TextBlock>
+                                </dxe:ComboBoxEdit.ToolTip>
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedComboBoxStyleSettings/>
+                                </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+                        
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+                <Button Content="Save" FontWeight="Bold" Click="Button_Click"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="60" Height="30"/>
+
+            </dxlc:LayoutControl>
+
+        </Grid>
+    </UserControl>
+</Window>

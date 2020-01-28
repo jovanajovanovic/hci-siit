@@ -1,0 +1,28 @@
+﻿<Window x:Class="MVVMSchedulerApplication.OpenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMSchedulerApplication"
+        mc:Ignorable="d"
+         xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        Title="Open" Height="200" Width="300"
+        local:HelpProvider.HelpKey="Forma">
+    <UserControl>
+
+        <Grid>
+            <dxlc:LayoutGroup>
+
+                <dxlc:LayoutItem IsRequired="True" Label="Open timetable:" LabelPosition="Top" FontSize="17" Margin="0,40,-0.4,-39.6">
+                    <ComboBox Name="open_edit" ItemsSource="{Binding cbItems}">
+                    </ComboBox>
+                </dxlc:LayoutItem>
+
+
+            </dxlc:LayoutGroup>
+            <Button Content="Open"   Click="Button_Click"  HorizontalAlignment="Center" FontSize="17"  VerticalAlignment="Bottom" Width="74" Margin="210,0,9.6,10.4"/>
+
+
+        </Grid>
+    </UserControl>
+</Window>
